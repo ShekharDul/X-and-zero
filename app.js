@@ -16,18 +16,19 @@
 // }
 
 function startGame () {
+  let clicks = 0;
   const gameBoard = document.getElementsByClassName('option');
-  for ( let i = 0; i<9; i++) {
-      if (i==0 || i==2 || i==4 || i==6 || i==8) {
-        gameBoard[i].addEventListener('click', function(){
-          this.innerText = 'X';
-      })
-      } else if (i==1 || i==3 || i==5 ||i==7) {
-          gameBoard[i].addEventListener('click', function(){
-            this.innerText = 'O';
-        })}
-  } 
+  for ( let i = 0; i < gameBoard.length; i++) {
+    gameBoard[i].addEventListener('click', function(){
+      if(clicks%2 == 0){
+        this.innerText = 'X';
+      } else {
+        this.innerText  = 'O';
+      }
+      clicks++;
+    })
+  }
+  
 }
-
 
 startGame();
