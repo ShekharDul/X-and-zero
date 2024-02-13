@@ -17,6 +17,7 @@ function startGame () {
   const gameBoard = document.getElementsByClassName('option');
   for ( let i = 0; i < gameBoard.length; i++) {
     gameBoard[i].innerText = (i+1).toString();
+    gameBoard[i].style.color = 'white';
   }
   for ( let i = 0; i < gameBoard.length; i++) {
 
@@ -29,6 +30,7 @@ function startGame () {
           checkCombination(combination, player);
         }
         this.innerText = 'X';
+        this.style.color = 'black';
         clicks++;
       } else if ((clicks%2) !== 0 && this.innerText !== 'X') {
         user2.push(this.innerText);
@@ -38,6 +40,7 @@ function startGame () {
           checkCombination(combination, player);
         }
         this.innerText = '0';
+        this.style.color = 'black';
         clicks++;
       }
       
