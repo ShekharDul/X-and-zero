@@ -1,10 +1,10 @@
 let user1 = [];
 let user2 = [];
-let userMove = [];
+let userMoves = [];
 let player;
 let combination = [];
 let clicks = 0;
-
+startGame();
 
 function startGame () {
   user1 = [];
@@ -23,6 +23,7 @@ function startGame () {
 
     gameBoard[i].addEventListener('click', function(){
       if ((clicks % 2) == 0 && this.innerText !== '0') {
+        userMoves.push(this.innerText);
         user1.push(this.innerText);
         if(user1.length == 3) {
           combination = user1.sort();
@@ -33,6 +34,7 @@ function startGame () {
         this.style.color = 'black';
         clicks++;
       } else if ((clicks%2) !== 0 && this.innerText !== 'X') {
+        userMoves.push(this.innerText);
         user2.push(this.innerText);
         if(user2.length == 3) {
           combination = user2.sort();
@@ -49,7 +51,7 @@ function startGame () {
 }
 
 
-startGame();
+
 
 
 
@@ -65,11 +67,11 @@ function checkCombination (combination, player) {
   const displayResult = document.createElement('h1');
   const resultDiv = document.getElementById('result');
   const restartGame = document.createElement('button');
+  restartGame.classList.add('restart-button');
 
 
 
   for (let i = 0; i <winningPositions.length; i++) {
-    console.log(userCombo + '=' + winningPositions[i]);
     if (userCombo.toString() == winningPositions[i].toString() && player == 'X') {
       displayResult.innerText = 'X wins';
       resultDiv.appendChild(displayResult);
@@ -80,7 +82,8 @@ function checkCombination (combination, player) {
         resultDiv.removeChild(restartGame);
         startGame();
       })
-    }  else if (userCombo.toString() === winningPositions[i].toString() && player == '0') {
+    } 
+     else if (userCombo.toString() == winningPositions[i].toString() && player == '0') {
       displayResult.innerText = '0 wins';
       resultDiv.appendChild(displayResult);
       restartGame.innerText = 'Restart';
@@ -91,8 +94,14 @@ function checkCombination (combination, player) {
         startGame();
 
       })
-    }
-  }
+    } 
+  } 
+
 }
 
+
+const playGame = document.getElementById('play');
+playGame.addEventListener('click', function(){
+  startGame();
+});
 
