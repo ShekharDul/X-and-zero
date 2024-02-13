@@ -21,3 +21,7 @@ body {
 #gameboard div {
   background-color: white;
 }
+
+.option {
+  color: white;
+}
